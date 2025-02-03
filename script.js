@@ -7,7 +7,6 @@ const drawLine = (startNote, endNote) => {
     line.className = "connection-line";
 
     const updateLine = () => {
-        // Проверяем, существуют ли еще заметки
         if (!startNote.isConnected || !endNote.isConnected) {
             line.remove();
             return;
@@ -17,7 +16,6 @@ const drawLine = (startNote, endNote) => {
         const rect2 = endNote.getBoundingClientRect();
         const boardRect = board.getBoundingClientRect();
 
-        // Учитываем скролл страницы
         const scrollX = window.pageXOffset || document.documentElement.scrollLeft;
         const scrollY = window.pageYOffset || document.documentElement.scrollTop;
 
@@ -35,7 +33,6 @@ const drawLine = (startNote, endNote) => {
         line.style.top = `${y1}px`;
     };
 
-    // Добавляем обработчики для обновления линий при движении заметок
     startNote.addEventListener('mousedown', () => {
         const update = () => {
             updateLine();
@@ -56,7 +53,6 @@ const drawLine = (startNote, endNote) => {
         update();
     });
 
-    // Вызываем updateLine сразу после создания
     requestAnimationFrame(updateLine);
 
     board.appendChild(line);
@@ -72,7 +68,6 @@ const addNote = (text) => {
     note.addEventListener("mousedown", startDrag);
 
     note.addEventListener("dblclick", () => {
-        // Удаляем все связанные линии
         connections.forEach(([line, start, end], index) => {
             if (start === note || end === note) {
                 line.remove();
@@ -87,7 +82,6 @@ const addNote = (text) => {
 
     board.appendChild(note);
 
-    // Проверяем наличие других заметок
     const notes = Array.from(board.children).filter(child => child.classList.contains('note'));
     if (notes.length > 1) {
         const prevNote = notes[notes.length - 2];
