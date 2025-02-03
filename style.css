@@ -1,0 +1,116 @@
+body {
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  background-color: #fff5e6;
+  color: #5a4a42;
+  margin: 0;
+  padding: 20px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.controls {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+#note-input {
+  padding: 12px;
+  border: 2px solid #e0c8b0;
+  border-radius: 12px;
+  flex-grow: 1;
+  font-size: 16px;
+  background-color: #fffaf0;
+  color: #5a4a42;
+  box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#note-input::placeholder {
+  color: #b8a898;
+  font-style: italic;
+}
+
+#add-btn {
+  padding: 12px 24px;
+  background-color: #ffd1b3;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  color: #5a4a42;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#add-btn:hover {
+  background-color: #ffb38a;
+  transform: scale(1.05);
+}
+
+#board {
+  position: relative;
+  width: 100%;
+  min-height: 70vh;
+  background-color: #fffaf0;
+  border: 3px dashed #e0c8b0;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.note {
+  position: absolute;
+  padding: 20px;
+  width: 160px;
+  min-height: 110px;
+  border-radius: 16px;
+  cursor: grab;
+  user-select: none;
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  z-index: 1;
+  border: 2px solid #e0d8cc;
+  transition: transform 0.2s, box-shadow 0.2s;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.note:active {
+  cursor: grabbing;
+  transform: scale(1.05);
+  box-shadow: 5px 5px 12px rgba(0, 0, 0, 0.2);
+}
+
+.connection-line {
+  position: absolute;
+  height: 2px;
+  background-color: rgba(255, 0, 0, 0.4);
+  transform-origin: 0 0;
+  z-index: 0;
+  pointer-events: none;
+  box-shadow: 0 1px 2px rgba(255, 0, 0, 0.2);
+}
+
+@keyframes popIn {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.note {
+  animation: popIn 0.3s ease-out;
+}
+
+.note:nth-child(4n + 1) { background-color: #ffd1b3; }
+.note:nth-child(4n + 2) { background-color: #b3e5fc; }
+.note:nth-child(4n + 3) { background-color: #c8e6c9; }
+.note:nth-child(4n + 4) { background-color: #fff9c4; }
